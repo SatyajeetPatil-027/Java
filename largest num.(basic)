@@ -1,0 +1,23 @@
+package project1;
+
+public class Largest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a=5,b=10,c=15;
+		System.out.println("To find the largest number:");
+		System.out.println(" ");
+		if (a>b && a>c)
+		{
+			System.out.println("A is the largest number.");
+		}
+		else if (b>a && b>c)
+		{
+			System.out.println("B is the largest number.");
+		}
+		else
+		{
+			System.out.println("C is the largest number.");
+		}
+	}
+}
