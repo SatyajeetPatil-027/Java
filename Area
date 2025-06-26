@@ -1,0 +1,23 @@
+package Program;
+import java.util.Scanner;
+
+//import jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput;
+public class Area
+{
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Enter the length: ");
+		float length = sc.nextFloat();
+		
+		System.out.print("Enter the breadth: ");
+		float breadth = sc.nextFloat() ;
+		
+		float area= length*breadth;
+		System.out.println("Length: " +length);
+		System.out.println("Breadth: " +breadth);
+		System.out.println("Area of rectangle is: "+area);
+	}
+}
