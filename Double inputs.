@@ -1,0 +1,27 @@
+package Program;
+import java.util.Scanner;
+public class Double {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the 1st number: ");
+		
+		if(!sc.hasNextDouble())
+		{
+			System.out.println("Invalid input, enter valid number.");
+		}
+		double n1 = sc.nextDouble();
+		
+		System.out.print("Enter the 2nd number: ");
+		if(!sc.hasNextDouble())
+		{
+			System.out.println("Invalid input, enter valid number.");
+		}
+		double n2 =sc.nextDouble();
+		
+		double avg =(n1+n2)/2;
+		System.out.println("\nGiven numbers are: "+n1+", "+n2+"\n");
+		System.out.println("Average of two double number is:\n"+avg);
+	}
+}
