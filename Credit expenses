@@ -1,0 +1,39 @@
+package com.limit;
+import java.util.Scanner;
+public class Credit
+{
+
+	public static void main(String[] args)
+	{
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Please enter your account number: ");
+        int acc=sc.nextInt();
+        
+        System.out.print("Enter the balance at the begining of the month: ");
+        int bal=sc.nextInt();
+        
+        System.out.print("Enter the total of all items charged this month: ");
+        int month= sc.nextInt();
+        
+        System.out.print("Enter the total credits applied to \ncustomer’s account this month: ");
+        int credit=sc.nextInt();
+        
+        System.out.print("Enter the allowed credit limit: ");
+        int limit=sc.nextInt();
+        
+        int newBalance = bal + month - credit; 
+        System.out.println("\nThe new balance of account no."+acc+" is: "+newBalance);
+        
+        if(newBalance>limit)
+        {
+        	System.out.println("Credit limit exceeded!!!");
+        }
+        else
+        {
+        	System.out.println("Credit limit not excedeed.");
+        }
+        
+        sc.close();
+	}
+}
