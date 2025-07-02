@@ -1,0 +1,44 @@
+package Program4;
+import java.util.Calendar;
+import java.util.Scanner;
+class Date
+{
+	private int day,month,year;
+	public void initDate()
+	{
+		Calendar c= Calendar.getInstance();//displays current date
+		day=c.get(Calendar.DATE);
+		month=c.get(Calendar.MONTH)+1;
+		year=c.get(Calendar.YEAR);
+	}
+	public void acceptData()
+	{
+		Scanner sc =new Scanner(System.in);
+		System.out.print("Enter the date: ");
+		day = sc.nextInt();
+		System.out.print("Enter the month: ");
+		month = sc.nextInt();
+		System.out.print("Enter the year: ");
+		year = sc.nextInt();
+	}
+	
+	public void dispData()
+	{
+		System.out.println("DATE: "+day);
+		System.out.println("MONTH: "+month);
+		System.out.println("YEAR: "+year+"\n");
+	}	
+}
+
+public class Calender 
+{
+	public static void main(String[] args)
+	{
+		Date d= new Date();
+		System.out.println("Today's date:");
+		d.initDate();
+		d.dispData();
+		d.acceptData();
+		d.dispData();
+	}
+}
