@@ -1,0 +1,97 @@
+package Program;
+
+import java.util.Scanner;
+
+public class Inovice
+{
+	private String partnum , partdesp;
+	private int quantity;
+	private double price;
+	
+	Inovice(String p, String d, int q,double a)
+	{
+		partnum=p;
+		partdesp=d;
+		quantity=q;
+		price=a;
+	}
+	
+	public  String getPart()
+	{
+		return partnum;
+	}
+	public void setPart(String p)
+	{
+		partnum=p;		
+	}
+	
+	public String getDesp()
+	{
+		return partdesp;
+	}
+	public void setDesp(Stirng d)
+	{
+		partdesp=d;
+	}
+	
+	public int  getQty()
+	{
+			return quantity;	
+	}
+	public void setQty(int q)
+	{
+		if(q<=0)
+		{
+			q=0;
+		}
+		else
+		{
+			quantity=q;			
+		}
+	}
+	
+	public double getPrice()
+	{
+		return price;
+	}
+	public void setPrice(double a)
+	{
+		if(a<=0)
+		{
+			a==0.0;
+		}
+		else
+		{
+			price=a;				
+		}
+	}
+	//Total amount
+	public double inoviceAmt()
+	{
+		return quantity*price;
+	}
+}	
+
+
+
+
+
+
+
+package Program;
+import java.util.Scanner;
+
+public class que2
+{
+
+	public static void main(String[] args)
+	{
+		
+		Inovice i1=new Inovice("H101f","Hammer",3,2500.08);
+		System.out.println(i1.getPart() );
+		System.out.println(i1.getDesp() );
+		System.out.println( i1.getQty() );
+		System.out.println("$"+ i1.getPrice()+"\n");
+		System.out.println("Toatal inovice amount: "+"$"+i1.inoviceAmt() );
+	}
+}
