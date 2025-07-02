@@ -1,0 +1,71 @@
+package Program;
+
+public class Point2d
+{
+	private double x,y;
+	
+	Point2d(double x,double y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+	public String getDetails()
+	{
+		return "Point(" +x+ "," + y + ")";
+	}
+	public boolean isEqual(Point2d other)
+	{
+		return this.x==other.x && this.y==other.y;
+	}
+	public double calcDist(Point2d other)
+	{
+		return Math.sqrt(Math.pow(this.x-other.x,2)+ Math.pow(this.y-other.y, 2));
+	}
+}
+
+
+
+
+
+
+
+
+
+package Program;
+import Program.Point2d;
+import java.util.Scanner;
+
+public class que3
+{
+	public static void main(String[] args)
+	{
+		Scanner sc =new Scanner(System.in);
+		
+		System.out.println("Enter point1 coordinates: ");
+		double x1=sc.nextDouble();
+		double y1 =sc.nextDouble();
+		
+		System.out.println("Enter point2 coordinates: ");
+		double x2=sc.nextDouble();
+		double y2=sc.nextDouble();
+		
+		Point2d p1=new Point2d(x1,y1);
+		Point2d p2 =new Point2d(x2,y2);
+		System.out.println("Point 1: "+p1.getDetails());
+		System.out.println("Point 2: "+p2.getDetails());
+		
+		
+		if(p1.isEqual(p2))
+		{
+			System.out.println("\nBoth points are same");
+			System.out.println("Distance: 0");
+		}
+		else
+		{
+			System.out.println("\nPoints are not equal");
+			System.out.println("Distance="+p1.calcDist(p2));
+		}
+		sc.close();
+	}
+
+}
