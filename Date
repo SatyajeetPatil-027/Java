@@ -1,0 +1,62 @@
+package Program;
+
+public class Date
+{
+	private int day,month,year;
+	Date(int d,int m,int y)
+	{
+		day=d;
+		month=m;
+		year=y;
+	}
+	
+	public int get1()
+	{
+		return day;
+	}
+	public void set1(int d)
+	{
+		day = d;
+	}
+
+	public int get2()
+	{
+		return month;
+	}
+	public void set2(int m)
+	{
+		month = m;
+	}
+
+	public int get3()
+	{
+		return year;
+	}
+	public void set3(int y)
+	{
+		year = y;
+	}	
+	
+	public void disp()
+	{
+		System.out.println("Day: "+day);
+		System.out.println("Month: "+month);
+		System.out.println("year: "+year);
+	}
+}
+
+
+
+
+
+package Program;
+
+public class que1
+{
+	public static void main(String[] args)
+	{
+		Date d1=new Date(19,10,2005);
+				d1.disp();
+		// TODO Auto-generated method stub
+	}
+}
