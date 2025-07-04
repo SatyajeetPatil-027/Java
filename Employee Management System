@@ -1,0 +1,342 @@
+package com.management;
+
+public class Person
+{
+	private String name;
+	private MyDate dob;
+	
+	public Person(String name, MyDate dob)
+	{
+		this.name=name;
+		this.dob=dob;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	
+	public MyDate getDob()
+	{
+		return dob;
+	}
+	public void setDob(MyDate dob)
+	{
+		this.dob=dob;
+	}
+	
+	//@Override
+	public String toString()
+	{
+		return "Name: "+name+" D.O.B: "+dob;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+package com.management;
+
+public class Employee extends  Person
+{
+	private int id;
+	private String department;
+	private double salary;
+	private MyDate dateOfJoining;
+	
+	public Employee(String name, MyDate dob ,int id, String department, double salary,MyDate dateOfJoining)
+	{
+		super(name,dob);
+		this.id=id;
+		this.department=department;
+		this.salary=salary;
+		this.dateOfJoining=dateOfJoining;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public MyDate getDateOfJoining() {
+		return dateOfJoining;
+	}
+	public void setDateOfJoining(MyDate dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
+	}
+	
+	public String toString()
+	{
+		return "ID: "+id+" Department: "+department+" Salary: "+salary+" Date of joining: "+dateOfJoining;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.management;
+
+public class MyDate
+{
+	private int day, month, year;
+	public MyDate(int day,int month, int year)
+	{
+		this.day=day;
+		this.month=month;
+		this.year=year;
+	}
+
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
+	public String toString()
+	{
+		return "Date: "+day+"-"+month+"-"+year;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.management;
+import java.util.Scanner;
+
+public class TestEmployee
+{
+	static Scanner sc= new Scanner(System.in);
+	static Employee[] employees=new Employee[10];
+	static int count=0;
+	
+	public static void main(String[] args)
+	{
+		while(! false)
+		{
+			System.out.println("..............Menu............");
+			System.out.println("1) Add employee.");
+			System.out.println("2) Display all employees.");
+			System.out.println("3) Search employee by ID.");
+			System.out.println("4) Display employees joined in given year.");
+			System.out.println("5) Find employee with maximum salary.");
+			System.out.println("6) Find employee with minimum salary.");
+			System.out.println("7) Exit.");
+			System.out.print("\nEnter your choice: ");
+			int choice = sc.nextInt();
+			sc.nextLine();
+			
+			switch(choice)
+			{
+				case 1: addEmp(); break;
+				case 2: displayAllEmployees(); break;
+				case 3: searchEmployeeByID(); break;
+				case 4: displayEmployeesByYear(); break;
+				case 5: findEmployeeWithMaxSalary(); break;
+				case 6: findEmployeeWithMinSalary(); break;
+				case 7: 
+					System.out.println("\nExiting.... Thank you.");
+					System.exit(0);
+				default:
+					System.out.println("\nInvalid input! Please try again.");
+			}
+		}
+	}
+	
+	static void addEmp()
+{
+	    if(count == employees.length) 
+	    {
+	        System.out.println("Employee list full! Cannot add more.");
+	        return;
+	    }
+	    System.out.print("Enter employee name: ");
+	    String name = sc.nextLine();
+
+	    System.out.println("Enter date of birth: ");
+	    MyDate dob = inputDate();
+
+	    System.out.print("Enter employee ID: ");
+	    int id = sc.nextInt();
+	    sc.nextLine();
+
+	    System.out.print("Enter department: ");
+	    String dept = sc.nextLine();
+
+	    System.out.print("Enter salary: ");
+	    double salary = sc.nextDouble();
+	    sc.nextLine();
+
+	    System.out.println("Enter date of joining:");
+	    MyDate doj = inputDate();
+
+	    Employee emp = new Employee(name, dob, id, dept, salary, doj);
+	    employees[count++] = emp;
+	    System.out.println("\nEmployee added successfully.\n");
+	}
+
+	static MyDate inputDate()
+	{
+	    System.out.print("Day: ");
+	    int day = sc.nextInt();
+	    System.out.print("Month: ");
+	    int month = sc.nextInt();
+	    System.out.print("Year: ");
+	    int year = sc.nextInt();
+	    sc.nextLine();
+	    return new MyDate(day, month, year);
+	}
+
+	static void displayAllEmployees() 
+	{
+	    if(count == 0) 
+	    {
+	        System.out.println("\nNo employees to display.\n");
+	        return;
+	    }
+	    System.out.println("\nDisplaying all employees:\n");
+	    for(int i=0; i<count; i++) 
+	    {
+	        System.out.println(employees[i].toString());
+	    }
+	}
+
+	static void searchEmployeeByID() 
+	{
+	    System.out.print("Enter employee ID to search: ");
+	    int id = sc.nextInt();
+	    sc.nextLine();
+
+	    for(int i=0; i<count; i++) 
+	    {
+	        if(employees[i].getId() == id) 
+	        {
+	            System.out.println("\nEmployee found:\n" + employees[i].toString());
+	            return;
+	        }
+	    }
+	    System.out.println("\nEmployee with ID " + id + " not found.\n");
+	}
+
+	static void displayEmployeesByYear() 
+	{
+	    System.out.print("Enter year to find employees who joined in that year: ");
+	    int year = sc.nextInt();
+	    sc.nextLine();
+
+	    boolean found = false;
+	    for(int i=0; i<count; i++) 
+	    {
+	        if(employees[i].getDateOfJoining().getYear()==year) {
+	            if(!found) {
+	                System.out.println("\nEmployees who joined in " + year + ":\n");
+	            }
+	            System.out.println(employees[i].toString());
+	            found = true;
+	        }
+	    }
+	    if(!found) 
+	    {
+	        System.out.println("\nNo employees found who joined in " + year + ".\n");
+	    }
+	}
+
+	static void findEmployeeWithMaxSalary() 
+	{
+	    if(count == 0) 
+	    {
+	        System.out.println("\nNo employees available.\n");
+	        return;
+	    }
+	    Employee maxSalaryEmp = employees[0];
+	    for(int i=1; i<count; i++) 
+	    {
+	        if(employees[i].getSalary() > maxSalaryEmp.getSalary()) 
+	        {
+	            maxSalaryEmp = employees[i];
+	        }
+	    }
+	    System.out.println("\nEmployee with maximum salary:\n" + maxSalaryEmp.toString());
+	}
+
+	static void findEmployeeWithMinSalary() 
+	{
+	    if(count == 0) 
+	    {
+	        System.out.println("\nNo employees available.\n");
+	        return;
+	    }
+	    Employee minSalaryEmp = employees[0];
+	    for(int i=1; i<count; i++) 
+	    {
+	        if(employees[i].getSalary()< minSalaryEmp.getSalary()) 
+	        {
+	            minSalaryEmp = employees[i];
+	        }
+	    }
+	    System.out.println("\nEmployee with minimum salary:\n" + minSalaryEmp.toString());
+	}
+}
