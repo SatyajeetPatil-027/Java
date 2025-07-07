@@ -1,0 +1,27 @@
+package com.user;
+import java.util.Scanner;
+
+public class Palindrome 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc =new Scanner(System.in);
+		String reverseStr="";
+		System.out.print("Enter the string: ");
+		String str = sc.nextLine();
+		
+		for(int i=str.length()-1; i>=0; --i)
+		{
+			reverseStr+=str.charAt(i);
+		}
+		if(str.toLowerCase().equals(reverseStr.toLowerCase()))
+		{
+			System.out.println("The given string "+ str +" is Palindrome.");
+		}
+		else
+		{
+			System.out.println("The given string "+ str +" is not Palindrome");
+		}
+		sc.close();
+	}
+}
