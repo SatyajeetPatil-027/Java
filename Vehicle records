@@ -1,0 +1,126 @@
+package program11;
+
+import java.io.*;
+import java.util.*;
+
+public class Vehicle 
+{
+    int vehicleId;
+    String model;
+    String type;
+    double price;
+
+    public Vehicle(int vehicleId, String model, String type, double price) 
+    {
+        this.vehicleId = vehicleId;
+        this.model = model;
+        this.type = type;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() 
+    {
+        return "VehicleID: " + vehicleId + ", Model: " + model + ", Type: " + type + ", Price: " + price;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package program11;
+
+import java.io.*;
+import java.util.*;
+
+public class VehicleRecords {
+    private static final String FILE_NAME = "Vehicles.db";
+
+    public static void writeVehicles() 
+    {
+        List<Vehicle> vehicles = Arrays.asList(
+                new Vehicle(101, "Honda Civic", "Sedan", 22000.0),
+                new Vehicle(102, "Ford F150", "Truck", 35000.0),
+                new Vehicle(103, "Toyota Corolla", "Sedan", 180000.0),
+                new Vehicle(104, "Tesla Model S", "Electric", 75000.0),
+                new Vehicle(105, "Yamaha YZF", "Motorcycle", -5000.0)
+        );
+
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(FILE_NAME))) 
+        {
+            for (Vehicle v : vehicles) 
+            {
+                if (v.price > 0) {
+                    dos.writeInt(v.vehicleId);
+                    dos.writeUTF(v.model);
+                    dos.writeUTF(v.type);
+                    dos.writeDouble(v.price);
+                } 
+                else 
+                {
+                    System.out.println("Skipping vehicle with invalid price: " + v);
+                }
+            }
+        } 
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readVehicles()
+    {
+        List<Vehicle> vehicles = new ArrayList<>();
+
+        try (DataInputStream dis = new DataInputStream(new FileInputStream(FILE_NAME))) 
+        {
+            while (true) {
+                int vehicleId = dis.readInt();
+                String model = dis.readUTF();
+                String type = dis.readUTF();
+                double price = dis.readDouble();
+
+                vehicles.add(new Vehicle(vehicleId, model, type, price));
+            }
+        } 
+        catch (EOFException eof)
+        {
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        vehicles.sort((v1, v2) -> Double.compare(v2.price, v1.price));
+
+        System.out.println("Vehicles sorted by price (descending)\n:");
+        for (Vehicle v : vehicles)
+        {
+            System.out.println(v);
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        writeVehicles();
+        readVehicles();
+    }
+}
