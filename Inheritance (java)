@@ -1,0 +1,159 @@
+import java.util.*;
+
+class Person {
+    String name;
+    String birthdate;
+    double height;
+    double weight;
+    String address;
+
+    public Person(String name, String birthdate, double height, double weight, String address) {
+        this.name = name;
+        this.birthdate = birthdate;
+        this.height = height;
+        this.weight = weight;
+        this.address = address;
+    }
+
+    public int calculateAge() {
+        String[] parts = birthdate.split("-");
+        int birthYear = Integer.parseInt(parts[2]);
+        Calendar c = Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        return currentYear - birthYear;
+    }
+
+    public void displayPerson() {
+        System.out.println("Name: " + name);
+        System.out.println("Birthdate: " + birthdate);
+        System.out.println("Height: " + height);
+        System.out.println("Weight: " + weight);
+        System.out.println("Address: " + address);
+        System.out.println("Age: " + calculateAge());
+    }
+}
+
+class Student extends Person {
+    int rollNo;
+    double[] marks;
+
+    public Student(String name, String birthdate, double height, double weight,
+                   String address, int rollNo, double[] marks) {
+        super(name, birthdate, height, weight, address);
+        this.rollNo = rollNo;
+        this.marks = marks;
+    }
+
+    public double calculateAvg() {
+        double sum = 0;
+        for (double m : marks) {
+            sum += m;
+        }
+        return sum / marks.length;
+    }
+
+    public void displayStudent() {
+        displayPerson();
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Average Marks: " + calculateAvg());
+    }
+}
+
+class Employee extends Person {
+    int empId;
+    double salary;
+
+    public Employee(String name, String birthdate, double height, double weight,
+                    String address, int empId, double salary) {
+        super(name, birthdate, height, weight, address);
+        this.empId = empId;
+        this.salary = salary;
+    }
+
+    public double calculateTax() {
+        if (salary > 50000) {
+            return salary * 0.10;
+        } else {
+            return 0.0;
+        }
+    }
+
+    public void displayEmployee() {
+        displayPerson();
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Salary: " + salary);
+        System.out.println("Tax: " + calculateTax());
+    }
+}
+
+public class InheritanceTest {
+   public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Student Details");
+        System.out.print("Name: ");
+        String sName = sc.nextLine();
+
+        System.out.print("Birthdate (dd-mm-yyyy): ");
+        String sBirthdate = sc.nextLine();
+
+        System.out.print("Height: ");
+        double sHeight = sc.nextDouble();
+
+        System.out.print("Weight: ");
+        double sWeight = sc.nextDouble();
+        sc.nextLine();
+
+        System.out.print("Address: ");
+        String sAddress = sc.nextLine();
+
+        System.out.print("Roll No: ");
+        int rollNo = sc.nextInt();
+
+        System.out.print("Enter number of subjects: ");
+        int n = sc.nextInt();
+
+        double[] marks = new double[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter marks for subject " + (i + 1) + ": ");
+            marks[i] = sc.nextDouble();
+        }
+
+        Student s = new Student(sName, sBirthdate, sHeight, sWeight, sAddress, rollNo, marks);
+      
+        sc.nextLine();
+        System.out.println("\nEnter Employee Details");
+        System.out.print("Name: ");
+        String eName = sc.nextLine();
+
+        System.out.print("Birthdate (dd-mm-yyyy): ");
+        String eBirthdate = sc.nextLine();
+
+        System.out.print("Height: ");
+        double eHeight = sc.nextDouble();
+
+        System.out.print("Weight: ");
+        double eWeight = sc.nextDouble();
+        sc.nextLine(); 
+
+        System.out.print("Address: ");
+        String eAddress = sc.nextLine();
+
+        System.out.print("Employee ID: ");
+        int empId = sc.nextInt();
+
+        System.out.print("Salary: ");
+        double salary = sc.nextDouble();
+
+        Employee e = new Employee(eName, eBirthdate, eHeight, eWeight, eAddress, empId, salary);
+
+    
+        System.out.println("\nStudent Details");
+        s.displayStudent();
+
+        System.out.println("\nEmployee Details");
+        e.displayEmployee();
+
+        sc.close();
+    }
+}
