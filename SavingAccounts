@@ -1,0 +1,68 @@
+class SavingsAccount {
+    // Static variable shared by all instances
+    private static double annualInterestRate;
+
+    // Instance variable unique to each object
+    private double savingsBalance;
+
+    public SavingsAccount(double initialBalance) {
+        savingsBalance = initialBalance;
+    }
+
+    public void calculateMonthlyInterest() {
+        double monthlyInterest = (savingsBalance * annualInterestRate) / 12;
+        savingsBalance += monthlyInterest;
+    }
+
+    public static void modifyInterestRate(double newRate) {
+        annualInterestRate = newRate;
+    }
+
+    public double getSavingsBalance() {
+        return savingsBalance;
+    }
+}
+
+import java.util.Scanner;
+
+public class TestSavingsAccount {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter initial balance for Saver1: Rs ");
+        double balance1 = input.nextDouble();
+
+        System.out.print("Enter initial balance for Saver2: Rs ");
+        double balance2 = input.nextDouble();
+
+        
+        SavingsAccount saver1 = new SavingsAccount(balance1);
+        SavingsAccount saver2 = new SavingsAccount(balance2);
+
+       
+        System.out.print("Enter annual interest rate (e.g., 0.04 for 4%): ");
+        double rate1 = input.nextDouble();
+        SavingsAccount.modifyInterestRate(rate1);
+
+    
+        saver1.calculateMonthlyInterest();
+        saver2.calculateMonthlyInterest();
+
+        System.out.printf("Saver1 balance after %.2f%% interest: Rs %.2f%n", rate1 * 100, saver1.getSavingsBalance());
+        System.out.printf("Saver2 balance after %.2f%% interest: Rs %.2f%n", rate1 * 100, saver2.getSavingsBalance());
+
+     
+        System.out.print("Enter new annual interest rate for next month (e.g., 0.05 for 5%): ");
+        double rate2 = input.nextDouble();
+        SavingsAccount.modifyInterestRate(rate2);
+
+      
+        saver1.calculateMonthlyInterest();
+        saver2.calculateMonthlyInterest();
+
+        System.out.printf("Saver1 balance after %.2f%% interest: Rs %.2f%n", rate2 * 100, saver1.getSavingsBalance());
+        System.out.printf("Saver2 balance after %.2f%% interest: Rs %.2f%n", rate2 * 100, saver2.getSavingsBalance());
+
+       
+    }
+}
